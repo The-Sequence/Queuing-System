@@ -28,8 +28,15 @@ while True:
 
     if choice == '1':
         print("***** Queuing System - Add a Patient *****\n")
-        patient = option1_add_patient()
-        patient_list.add_patient(patient)
+        patient_name = validate_name()
+        patient_age = validate_age()
+        patient_sickness = validate_sickness()
+        sickness_urgency_level = validate_urgency_level()
+
+        patient_info = combine_to_dict(patient_name, patient_age, patient_sickness, sickness_urgency_level)
+        patient_list.add_patient(patient_info)
+
+        print(f"Patient {patient_name} added successfully.")
 
         input("Press Enter to continue...")
 
@@ -49,6 +56,7 @@ while True:
     elif choice == '4':
         print("***** Queuing System - Number of Patients in Queue *****\n")
         # Code to count patients
+        print(f"Number of patients in queue: {patient_list.size}")
         input("Press Enter to continue...")
 
     elif choice == 'Q':
