@@ -33,9 +33,7 @@ class PatientLinkedList:
             print ("There are no patients in the queue.")
             return
         else:
-
             current = self.head
-
             while current:
                 print(f"Patient ' {current}'")
                 current = current.next
@@ -50,6 +48,23 @@ class PatientLinkedList:
             result += str(current) + "\n"
             current = current.next
         return result
+
+    def peek_patient(self, mode=0):
+        if self.is_empty():
+            print("No patients in queue.")
+            return None
+        else:
+            if mode == 0:
+                return self.head.name
+            elif mode == 1:
+                return (f"\nName:       {self.head.name}"
+                        f"\nAge:        {self.head.age}"
+                        f"\nSickness:   {self.head.sickness}"
+                        f"\nUrgency Level:  {self.head.urgency_level}")
+            else:
+                return self.head
+
+
 
     def serve_patient(self):
         if self.is_empty():
