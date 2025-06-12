@@ -8,4 +8,4 @@ class PatientNode:
 
     def __str__(self):
         return (f"Patient (Name: {self.name}, Age: {self.age}, "
-                f"Ailment: {self.sickness}, Urgency Level: {self.urgency_level})")
+                f"Sickness: {self.sickness}, Urgency Level: {self.urgency_level})")
