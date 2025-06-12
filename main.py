@@ -29,9 +29,21 @@ while True:
     if choice == '1':
         print("***** Queuing System - Add a Patient *****\n")
         patient_name = validate_name()
-        patient_age = validate_age()
-        patient_sickness = validate_sickness()
-        sickness_urgency_level = validate_urgency_level()
+
+        if patient_name is None: # Returns to the menu as soon as the user enters 'q' or 'Q'
+            continue
+        patient_age = validate_age() # Returns to the menu as soon as the user enters 'q' or 'Q'
+
+        if patient_age is None:
+            continue
+        patient_sickness = validate_sickness() # Returns to the menu as soon as the user enters 'q' or 'Q'
+
+        if patient_sickness is None:
+            continue
+        sickness_urgency_level = validate_urgency_level() # Returns to the menu as soon as the user enters 'q' or 'Q'
+
+        if sickness_urgency_level is None:
+            continue
 
         patient_info = combine_to_dict(patient_name, patient_age, patient_sickness, sickness_urgency_level)
         patient_list.add_patient(patient_info)
@@ -43,7 +55,27 @@ while True:
     elif choice == '2':
         print("***** Queuing System - Serve a Patient *****\n")
         # Code to remove a patient
-        input("Press Enter to continue...")
+
+        print(f"The patient next on queue is: {patient_list.peek_patient(mode=1)}")
+        choice = validate_choice("Would you like to serve this patient? ")
+
+        if choice is None:
+            print("Returning to menu...")
+            input("Press Enter to continue...")
+            continue
+
+        elif choice == 'Y':
+            patient_list.serve_patient()
+            print(f"Patient {patient_list.peek_patient(mode=0)} has been served and removed from the queue.")
+            input("Press Enter to continue...")
+
+        elif choice == 'N':
+            print("Returning to menu...")
+            input("Press Enter to continue...")
+            continue
+        else:
+            continue
+
 
     elif choice == '3':
         print("***** Queuing System - Display Patient List *****\n")
@@ -56,11 +88,14 @@ while True:
     elif choice == '4':
         print("***** Queuing System - Number of Patients in Queue *****\n")
         # Code to count patients
+
+        #Note: Not actual implementation
         print(f"Number of patients in queue: {patient_list.size}")
         input("Press Enter to continue...")
 
     elif choice == 'Q':
         print("Exiting the system. Goodbye!")
-        break
+        exit(0)
+
     else:
-        print("Invalid choice, please try again.")
+        raise ValueError("Invalid choice. Please try again.")
