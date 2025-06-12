@@ -26,7 +26,7 @@ class PatientLinkedList:
             new_node.next = current.next
             current.next = new_node
         self.size += 1
-        print(f"Patient ' {name} ' has been added to the queue.")
+        print(f"\nPatient ' {name} ' has been added to the queue.")
 
     def service_patient(self):
         if self.is_empty():
