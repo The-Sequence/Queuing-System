@@ -21,7 +21,7 @@ class PatientLinkedList:
             self.head = new_node
         else:
             current = self.head
-            while current.next is not None and urgency_level <= urgency_level:
+            while current.next is not None and urgency_level >= current.next.urgency_level:
                 current = current.next
             new_node.next = current.next
             current.next = new_node
@@ -42,14 +42,14 @@ class PatientLinkedList:
 
     def display_patients(self):
         if self.is_empty():
-            print("There are no patients in the queue.")
-            return
-        else:
-            current = self.head
-            print("Patients in the queue:")
-            while current:
-                print(f"Patient: {current.name}, Age: {current.age}, Ailment: {current.ailment}, Urgency Level: {current.urgency_level}")
-                current = current.next
+            return "No patients in queue"
+
+        result = "Patients in queue:\n"
+        current = self.head
+        while current:
+            result += str(current) + "\n"
+            current = current.next
+        return result
 
     def serve_patient(self):
         if self.is_empty():
