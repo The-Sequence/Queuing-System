@@ -16,7 +16,6 @@ from input_validation import *
 
 patient_list = PatientLinkedList()
 
-
 while True:
     print("***** Queuing System Menu *****\n"
           "1. Add a patient\n"
@@ -30,9 +29,7 @@ while True:
     if choice == '1':
         print("***** Queuing System - Add a Patient *****\n")
         patient = option1_add_patient()
-        print(patient)
         patient_list.add_patient(patient)
-        print(patient_list.__str__())
 
         input("Press Enter to continue...")
 
@@ -44,6 +41,9 @@ while True:
     elif choice == '3':
         print("***** Queuing System - Display Patient List *****\n")
         # Code to display patients
+
+        #Note: Not actual implementation
+        print(patient_list.display_patients())
         input("Press Enter to continue...")
 
     elif choice == '4':
