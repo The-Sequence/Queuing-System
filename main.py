@@ -24,7 +24,7 @@ while True:
           "2. Remove a patient\n"
           "3. Display patients in queue\n"
           "4. Number of patients in queue\n"
-          "Q. Exit\n")
+          "5. Exit\n")
 
     choice = validate_choice("Please enter your choice", mode=0)
 
