@@ -26,7 +26,6 @@ class PatientLinkedList:
             new_node.next = current.next
             current.next = new_node
         self.size += 1
-        print(f"\nPatient ' {name} ' has been added to the queue.")
 
     def service_patient(self):
         if self.is_empty():
@@ -50,6 +49,10 @@ class PatientLinkedList:
         return result
 
     def peek_patient(self, mode=0):
+        """Returns the name of the patient at the front of the queue\n.
+        If mode is 0, returns the first name of the patient\n
+        If mode is 1, returns detailed information of the patient\n"""
+
         if self.is_empty():
             print("No patients in queue.")
             return None
@@ -57,10 +60,10 @@ class PatientLinkedList:
             if mode == 0:
                 return self.head.name
             elif mode == 1:
-                return (f"\nName:       {self.head.name}"
-                        f"\nAge:        {self.head.age}"
-                        f"\nSickness:   {self.head.sickness}"
-                        f"\nUrgency Level:  {self.head.urgency_level}")
+                return (f"\nName:               {self.head.name}"
+                        f"\nAge:                {self.head.age}"
+                        f"\nSickness:           {self.head.sickness}"
+                        f"\nUrgency Level:      {self.head.urgency_level}")
             else:
                 return self.head
 
@@ -71,10 +74,11 @@ class PatientLinkedList:
             print("No patients to serve.")
             return
         else:
+            patient_name = self.head.name
             served = self.head
             self.head = self.head.next
             self.size -= 1
-            print(f"Serving patient: {served}")
+            print(f"\nServed patient:\n {patient_name}")
 
     def count_patients(self):
         return self.size
