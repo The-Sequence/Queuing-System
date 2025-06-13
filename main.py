@@ -40,7 +40,7 @@ while True:
         print(f"Please confirm the following patient information:\n"
               f"Name:               {patient_info['name']}\n"
               f"Age:                {patient_info['age']}\n"
-              f"Sickness:           {patient_info[' ']}\n"
+              f"Sickness:           {patient_info['sickness']}\n"
               f"Urgency Level:      {patient_info['urgency_level']}\n")
 
         choice = validate_choice("Would you like to add this patient?")
@@ -58,8 +58,9 @@ while True:
             print(f"Patient {patient_info['name']} has been added to the queue.")
             input("Press any key to return to the menu...")
 
+
         else:
-            break
+            continue
 
     elif choice == 2:
         clear_screen()
