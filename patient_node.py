@@ -7,5 +7,5 @@ class PatientNode:
         self.next = None
 
     def __str__(self):
-        return (f"Patient (Name: {self.name}, Age: {self.age}, "
-                f"Sickness: {self.sickness}, Urgency Level: {self.urgency_level})")
+        return (f"Name: {self.name}, Age: {self.age}, "
+                f"Sickness: {self.sickness}, Urgency Level: {self.urgency_level}")
