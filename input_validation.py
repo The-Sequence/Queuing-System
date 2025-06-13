@@ -2,18 +2,20 @@ from patient_node import *
 from patient_linkedlist import *
 
 from os import system, name
+from title import *
 
-def clear_screen():     # Just in case we figure out where to put this function :D
+
+def clear_screen():  # Just in case we figure out where to put this function :D
     if name == 'nt':
         _ = system('cls')
     else:
         _ = system('clear')
 
+
 def validate_name():
     """Validate a patient's name."""
     while True:
         try:
-            """Get a patient name."""
             patient_name = input("Enter patient name: ").strip()
 
             if patient_name == 'q' or patient_name == 'Q':
@@ -31,6 +33,7 @@ def validate_name():
                 return str(patient_name).title()
         except ValueError as e:
             print(f"Invalid input for name: {e}. Please try again.")
+
 
 def validate_age():
     """Validate a patient's age."""
@@ -57,6 +60,7 @@ def validate_age():
                 return age
         except ValueError as e:
             print(f"Invalid input for age: {e}. Please try again.")
+
 
 def validate_sickness():
     """Get a patient sickness."""
@@ -89,6 +93,7 @@ def validate_sickness():
             print(f"Invalid input for sickness!"
                   f"\n{e}. Please try again")
 
+
 def validate_urgency_level():
     """Validate a patient's urgency level."""
     while True:
@@ -117,6 +122,56 @@ def validate_urgency_level():
         except ValueError as e:
             print(f"Invalid input for urgency level: {e}. Please try again.")
 
+
+def validate_choice(prompt, mode=1):
+    """Validate user choice.
+    \n mode 0: expects number as input
+    \n mode 1: expects y/n as input"""
+    while True:
+        if mode == 0:
+            while True:
+                try:
+                    choice = input(f"{prompt}: ")
+
+                    if choice == '' or choice.isspace():
+                        raise ValueError("Choice cannot be empty")
+                    if choice.isalpha():
+                        raise ValueError("Choice must be a number, not a letter")
+
+                    choice = int(choice)
+
+                    if choice < 1 or choice > 6:
+                        raise ValueError("Choice must be between 1 and 5")
+                    else:
+                        return choice
+
+
+                except ValueError as e:
+                    print(f"Invalid input for choice: {e}. Please try again.")
+
+        if mode == 1:
+            while True:
+                try:
+                    choice = input(f"\n{prompt} (Y/N): ")
+
+                    if choice == '' or choice.isspace():
+                        raise ValueError("Choice cannot be empty")
+                    if choice.isdigit():
+                        raise ValueError("Choice must be a letter, not a number")
+
+                    choice = choice.strip().upper()
+
+                    if choice == "Y":
+                        return choice
+                    elif choice == "N":
+                        return choice
+                    else:
+                        raise ValueError("Choice must be either 'Y' or 'N'")
+
+                except ValueError as e:
+                    print(f"Invalid input for choice: {e}. Please try again.")
+
+
 def combine_to_dict(name, age, sickness, urgency_level):
     """Combine validated inputs into a dictionary!"""
     return {
@@ -126,23 +181,50 @@ def combine_to_dict(name, age, sickness, urgency_level):
         'urgency_level': urgency_level
     }
 
-def validate_choice(prompt):
-    """Validate user choice."""
+
+def gather_patient_info():
+    """Gather all patient information."""
     while True:
         try:
-            choice = input(f"\n{prompt} (Y/N): ")
+            clear_screen()
+            choice_1_title()
+            patient_name = validate_name()
 
-            if choice == '' or choice.isspace():
-                raise ValueError("Choice cannot be empty")
-            if choice.isdigit():
-                raise ValueError("Choice must be a letter, not a number")
+            if patient_name is None:
+                return None
 
-            choice = choice.strip().upper()
+            clear_screen()
+            choice_1_title()
+            print(f"Entering details for Patient: {patient_name}\n")
+            patient_age = validate_age()
 
-            if choice == "Y":
-                return choice
-            elif choice == "N":
-                return choice
+            if patient_age is None:
+                clear_screen()
+                return None
+
+            clear_screen()
+            choice_1_title()
+            print(f"Entering details for Patient: {patient_name}\n"
+                  f"Patient Age: {patient_age}")
+            patient_sickness = validate_sickness()
+
+            if patient_sickness is None:
+                clear_screen()
+                return None
+
+            clear_screen()
+            choice_1_title()
+
+            print(f"Entering details for Patient: {patient_name}\n"
+                  f"Patient Age: {patient_age}\n"
+                  f"Patient Sickness: {patient_sickness}")
+            sickness_urgency_level = validate_urgency_level()
+
+            if sickness_urgency_level is None:
+                clear_screen()
+                return None
+
+            return combine_to_dict(patient_name, patient_age, patient_sickness, sickness_urgency_level)
 
         except ValueError as e:
-            print(f"Invalid input for choice: {e}. Please try again.")
+            print(f"Error: {e}. Please try again.")
