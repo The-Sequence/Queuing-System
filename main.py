@@ -12,6 +12,19 @@ Date: June 13, 2025 (Friday)
 
 """
 
+import sys
+import traceback
+
+def show_error_and_exit(exc_type, exc_value, exc_traceback):
+    """Display error information and wait for user input before exiting."""
+    print("An error occurred:")
+    traceback.print_exception(exc_type, exc_value, exc_traceback)
+    input("Press Enter to exit...")
+    sys.__excepthook__(exc_type, exc_value, exc_traceback)
+
+# Set up global exception handler
+sys.excepthook = show_error_and_exit
+
 from input_validation import *
 from title import *
 
@@ -113,6 +126,7 @@ while True:
         clear_screen()
         choice_5_title()
         print("Exiting the system. Goodbye!")
+        input("Press Enter to exit...")
         exit(0)
 
     else:
