@@ -20,6 +20,12 @@ def validate_name():
 
             if patient_name == 'q' or patient_name == 'Q':
                 return None
+            if patient_name == "quit" or patient_name == "quit":
+                raise ValueError("'quit' is not a valid name.")
+            if patient_name == "QUIT" or patient_name == "QUIT":
+                raise ValueError("'QUIT' is not a valid name.")
+            if patient_name == "Quit" or patient_name == "Quit":
+                raise ValueError("'Quit' is not a valid name.")
 
             if patient_name == '' or patient_name.isspace():
                 raise ValueError("Name cannot be empty")
@@ -158,9 +164,9 @@ def validate_choice(prompt, mode=1):
                     if choice.isdigit():
                         raise ValueError("Choice must be a letter, not a number")
                     choice = choice.strip().upper()
-                    if choice == "YES" or choice == 'Y':  # Changed to "YES"
+                    if choice == "YES":  # Changed to "YES"
                         return choice
-                    elif choice == "NO" or choice == 'N' :  # Changed to "NO"
+                    elif choice == "NO":  # Changed to "NO"
                         return choice
                     else:
                         raise ValueError("Choice must be either 'Yes' or 'No'")
