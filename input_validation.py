@@ -82,6 +82,12 @@ def validate_sickness():
             # If so, raises a ValueError :D
             if sickness == '' or sickness.isspace():
                 raise ValueError("Sickness cannot be empty")
+            if sickness == 'quit' or sickness == 'quit':
+                raise ValueError("Sickness cannot be 'quit' or 'quit'")
+            if sickness == 'QUIT' or sickness == 'QUIT':
+                raise ValueError("Sickness cannot be 'QUIT' or 'QUIT'")
+            if sickness == 'Quit' or sickness == 'Quit':
+                raise ValueError("Sickness cannot be 'Quit' or 'Quit'")
 
             if not all(c.isalpha() or c.isspace() for c in sickness):
                 clear_screen()
