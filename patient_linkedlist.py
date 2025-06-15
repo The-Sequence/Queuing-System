@@ -68,8 +68,6 @@ class PatientLinkedList:
             else:
                 return self.head
 
-
-
     def serve_patient(self):
         if self.is_empty():
             print("No patients to serve.")
