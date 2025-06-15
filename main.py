@@ -57,20 +57,19 @@ while True:
               f"Urgency Level:      {patient_info['urgency_level']}\n")
 
         choice = validate_choice("Would you like to add this patient?")
-        if choice is None or choice == 'No':
+        if choice is None or choice == 'No' or choice == 'N':
             clear_screen()
             choice_1_title()
             print("Patient information discarded.\n")
             input("Press any key to return to the menu...")
             continue
 
-        elif choice == 'Yes':
+        elif choice == 'Yes' or choice == 'Y':
             clear_screen()
             choice_1_title()
             patient_list.add_patient(patient_info)
             print(f"Patient {patient_info['name']} has been added to the queue.")
             input("Press any key to return to the menu...")
-
 
         else:
             continue
@@ -87,12 +86,12 @@ while True:
             print(f"The patient next on queue is: {patient_list.peek_patient(mode=1)}")
             choice = validate_choice(f"\nWould you like to serve patient {patient_list.peek_patient()}", mode=1)
 
-        if choice is None or choice == 'No':
+        if choice is None or choice == 'No' or choice == 'N':
             print("Returning to menu...")
             input("Press any key to return to the menu...")
             continue
 
-        elif choice == 'Yes':
+        elif choice == 'Yes' or choice == 'Y':
             print(f"Patient {patient_list.peek_patient(mode=0)} has been served and is removed from the queue.")
             patient_list.serve_patient()
             input("Press any key to return to the menu...")
@@ -118,6 +117,7 @@ while True:
         # Note: Not actual implementation
         if patient_list.is_empty():
             print("There are no patients in the queue.")
+            print()
         else:
             print(f"Number of patients in queue: {patient_list.size}")
         input("Press Enter to continue...")

@@ -158,9 +158,9 @@ def validate_choice(prompt, mode=1):
                     if choice.isdigit():
                         raise ValueError("Choice must be a letter, not a number")
                     choice = choice.strip().upper()
-                    if choice == "YES":  # Changed to "YES"
+                    if choice == "YES" or choice == 'Y':  # Changed to "YES"
                         return choice
-                    elif choice == "NO":  # Changed to "NO"
+                    elif choice == "NO" or choice == 'N' :  # Changed to "NO"
                         return choice
                     else:
                         raise ValueError("Choice must be either 'Yes' or 'No'")
