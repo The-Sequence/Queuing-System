@@ -20,12 +20,8 @@ def validate_name():
 
             if patient_name == 'q' or patient_name == 'Q':
                 return None
-            if patient_name == "quit" or patient_name == "quit":
-                raise ValueError("'quit' is not a valid name.")
-            if patient_name == "QUIT" or patient_name == "QUIT":
-                raise ValueError("'QUIT' is not a valid name.")
-            if patient_name == "Quit" or patient_name == "Quit":
-                raise ValueError("'Quit' is not a valid name.")
+            if patient_name == "quit" or patient_name == "Quit":
+                raise ValueError ("invalid input for patient name, patient name cannot be 'quit/QUIT'")
 
             if patient_name == '' or patient_name.isspace():
                 raise ValueError("Name cannot be empty")
@@ -82,12 +78,9 @@ def validate_sickness():
             # If so, raises a ValueError :D
             if sickness == '' or sickness.isspace():
                 raise ValueError("Sickness cannot be empty")
-            if sickness == 'quit' or sickness == 'quit':
-                raise ValueError("Sickness cannot be 'quit' or 'quit'")
-            if sickness == 'QUIT' or sickness == 'QUIT':
-                raise ValueError("Sickness cannot be 'QUIT' or 'QUIT'")
-            if sickness == 'Quit' or sickness == 'Quit':
-                raise ValueError("Sickness cannot be 'Quit' or 'Quit'")
+
+            if sickness == 'quit' or sickness == 'Quit':
+                raise ValueError('invalid input for sickness, sickness cannot be quit/Quit')
 
             if not all(c.isalpha() or c.isspace() for c in sickness):
                 clear_screen()
