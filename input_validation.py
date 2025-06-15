@@ -126,7 +126,7 @@ def validate_urgency_level():
 def validate_choice(prompt, mode=1):
     """Validate user choice.
     \n mode 0: expects number as input
-    \n mode 1: expects y/n as input"""
+    \n mode 1: expects yes/no as input"""
     while True:
         if mode == 0:
             while True:
