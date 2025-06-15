@@ -152,22 +152,18 @@ def validate_choice(prompt, mode=1):
         if mode == 1:
             while True:
                 try:
-                    choice = input(f"\n{prompt} (Y/N): ")
-
+                    choice = input(f"\n{prompt} (Yes/No): ")
                     if choice == '' or choice.isspace():
                         raise ValueError("Choice cannot be empty")
                     if choice.isdigit():
                         raise ValueError("Choice must be a letter, not a number")
-
                     choice = choice.strip().upper()
-
-                    if choice == "Y":
+                    if choice == "YES":  # Changed to "YES"
                         return choice
-                    elif choice == "N":
+                    elif choice == "NO":  # Changed to "NO"
                         return choice
                     else:
-                        raise ValueError("Choice must be either 'Y' or 'N'")
-
+                        raise ValueError("Choice must be either 'Yes' or 'No'")
                 except ValueError as e:
                     print(f"Invalid input for choice: {e}. Please try again.")
 
