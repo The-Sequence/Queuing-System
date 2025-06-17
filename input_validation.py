@@ -106,17 +106,17 @@ def validate_sickness():
             # *** CHANGED LOGIC START ***
             # Check if sickness is in our known list
             for level, illnesses in known_sicknesses.items():
-                if sickness in illnesses:
-                    print(f"\nThe sickness '{sickness}' is known and has a pre-assigned urgency level of {level}.")
-                    testing = validate_choice(f"\nWould you like to use this urgency level {level} for the sickness '{sickness}'?", mode=1)
-                    if testing == 'Yes' or testing == 'Y':
-                        return sickness, level  # Return both sickness and its level
-                    else:
-                         # If the loop completes without finding a match, the sickness is not known.
-                        return sickness, None # Return sickness and None for the level
+             if sickness in illnesses:
+                print(f"\nThe sickness '{sickness}' is known and has a pre-assigned urgency level of {level}.")
+                testing = validate_choice(
+                 f"\nWould you like to use this urgency level {level} for the sickness '{sickness}'?", mode=1)
+                if testing == 'Yes' or testing == 'Y':
+                    return sickness, level  # Return both sickness and its level
                 else:
-                    return sickness, None
-           
+                    return sickness, None  # Return sickness and None for the level
+            else:
+                return sickness, None
+
 
         except ValueError as e:
             print(f"Invalid input for sickness!"
