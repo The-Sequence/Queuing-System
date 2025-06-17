@@ -58,12 +58,11 @@ def main():
                   f"Urgency Level:      {patient_info['urgency_level']}\n")
 
             choice = validate_choice("Would you like to add this patient?")
-            if choice is None or choice == 'No' or choice == 'N':
+            if choice is None or choice == 'No' or choice == 'N' or choice == 'no':
                 clear_screen()
                 choice_1_title()
                 print("Patient information discarded.\n")
                 input("Press any key to return to the menu...")
-                continue
 
             elif choice == 'Yes' or choice == 'Y':
                 clear_screen()

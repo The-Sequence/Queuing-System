@@ -1,3 +1,4 @@
+# patient_linked_list.py
 
 from patient_node import *
 
@@ -28,25 +29,18 @@ class PatientLinkedList:
             current.next = new_node
         self.size += 1
 
-    def service_patient(self):
-        if self.is_empty():
-            print ("There are no patients in the queue.")
-            return
-        else:
-            current = self.head
-            while current:
-                print(f"Patient ' {current}'")
-                current = current.next
-
     def display_patients(self):
         if self.is_empty():
             return "No patients in queue"
 
         result = "Patients in queue:\n"
         current = self.head
+        count = 1
         while current:
-            result += str(current) + "\n"
+            # Added a counter for better readability
+            result += f"{count}. {str(current)}\n"
             current = current.next
+            count += 1
         return result
 
     def peek_patient(self, mode=0):
@@ -55,8 +49,7 @@ class PatientLinkedList:
         If mode is 1, returns detailed information of the patient\n"""
 
         if self.is_empty():
-            print("No patients in queue.")
-            return None
+            return None # Return None, let the caller handle printing
         else:
             if mode == 0:
                 return self.head.name
@@ -69,15 +62,16 @@ class PatientLinkedList:
                 return self.head
 
     def serve_patient(self):
+        """Removes the patient at the front of the queue."""
         if self.is_empty():
-            print("No patients to serve.")
-            return
-        else:
-            patient_name = self.head.name
-            served = self.head
-            self.head = self.head.next
-            self.size -= 1
-            print(f"\nServed patient:\n {patient_name}")
+            return None # Return None if nothing to serve
+        
+        # The main loop already displays who is being served.
+        # This function should just handle the logic.
+        served_patient_name = self.head.name
+        self.head = self.head.next
+        self.size -= 1
+        return served_patient_name # Return the name of who was served
 
     def count_patients(self):
         return self.size
