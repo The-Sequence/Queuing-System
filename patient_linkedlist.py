@@ -37,7 +37,6 @@ class PatientLinkedList:
         current = self.head
         count = 1
         while current:
-            # Added a counter for better readability
             result += f"{count}. {str(current)}\n"
             current = current.next
             count += 1
@@ -65,9 +64,7 @@ class PatientLinkedList:
         """Removes the patient at the front of the queue."""
         if self.is_empty():
             return None # Return None if nothing to serve
-        
-        # The main loop already displays who is being served.
-        # This function should just handle the logic.
+
         served_patient_name = self.head.name
         self.head = self.head.next
         self.size -= 1

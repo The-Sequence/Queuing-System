@@ -15,6 +15,9 @@ Date: June 13, 2025 (Friday)
 import sys
 import traceback
 
+from input_validation import *
+from title import *
+
 def show_error_and_exit(exc_type, exc_value, exc_traceback):
     """Display error information and wait for user input before exiting."""
     print("An error occurred:")
@@ -24,9 +27,6 @@ def show_error_and_exit(exc_type, exc_value, exc_traceback):
 
 # Set up global exception handler
 sys.excepthook = show_error_and_exit
-
-from input_validation import *
-from title import *
 
 def main():
     patient_list = PatientLinkedList()
@@ -57,8 +57,8 @@ def main():
                   f"Sickness:           {patient_info['sickness']}\n"
                   f"Urgency Level:      {patient_info['urgency_level']}\n")
 
-            choice = validate_choice("Would you like to add this patient?")
-            if choice is None or choice == 'No' or choice == 'N' or choice == 'no':
+            choice = validate_choice("Would you like to add this patient?", mode = 1)
+            if choice is None or choice == 'No' or choice == 'N':
                 clear_screen()
                 choice_1_title()
                 print("Patient information discarded.\n")
@@ -80,7 +80,7 @@ def main():
 
             if patient_list.is_empty():
                 print("There are no patients in the queue.")
-                input("Press any key to return to the menu...")
+                input("\nPress any key to return to the menu...")
                 continue
             else:
                 print(f"The patient next on queue is: {patient_list.peek_patient(mode=1)}")
@@ -126,7 +126,7 @@ def main():
             choice_5_title()
             print("Exiting the system. Goodbye!")
             input("Press Enter to exit...")
-            exit(0)
+            break
         else:
             print("Invalid choice. Please try again.")
 
