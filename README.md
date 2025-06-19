@@ -27,6 +27,13 @@ Patients are queued based on how urgent their condition is:
 | Medium  | 2     | Fracture, Vomiting, Migraine    |
 | Low     | 3     | Cold, Flu, Headache, etc.       |
 
+> If a patient's condition is not in the list, you will be
+> prompted to enter the urgency level.
+>
+> If a patient's condition is on the list, you are given
+> an option to proceed with the predefined urgency level,
+> or enter the urgency level yourself.
+
 ---
 ## 📌 How to use?
 
