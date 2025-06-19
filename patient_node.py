@@ -1,11 +1,11 @@
 class PatientNode:
-    def __init__(self, name, age, ailment, urgency_level):
+    def __init__(self, name, age, sickness, urgency_level):
         self.name = name
         self.age = age
-        self.ailment = ailment
+        self.sickness = sickness
         self.urgency_level = urgency_level
         self.next = None
 
     def __str__(self):
-        return (f"Patient (Name: {self.name}, Age: {self.age}, "
-                f"Ailment: {self.ailment}, Urgency Level: {self.urgency_level})")
+        return (f"Name: {self.name}, Age: {self.age}, "
+                f"Sickness: {self.sickness}, Urgency Level: {self.urgency_level}")

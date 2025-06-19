@@ -1,3 +1,5 @@
+# patient_linked_list.py
+
 from patient_node import *
 
 class PatientLinkedList:
@@ -21,45 +23,52 @@ class PatientLinkedList:
             self.head = new_node
         else:
             current = self.head
-            while current.next is not None and urgency_level <= urgency_level:
+            while current.next is not None and urgency_level >= current.next.urgency_level:
                 current = current.next
             new_node.next = current.next
             current.next = new_node
         self.size += 1
-        print(f"Patient ' {name} ' has been added to the queue.")
-
-    def service_patient(self):
-        if self.is_empty():
-            print ("There are no patients in the queue.")
-            return
-        else:
-
-            current = self.head
-
-            while current:
-                print(f"Patient ' {current}'")
-                current = current.next
 
     def display_patients(self):
         if self.is_empty():
-            print("There are no patients in the queue.")
-            return
+            return "No patients in queue"
+
+        result = "Patients in queue:\n"
+        current = self.head
+        count = 1
+        while current:
+            result += f"{count}. {str(current)}\n"
+            current = current.next
+            count += 1
+        return result
+
+    def peek_patient(self, mode=0):
+        """Returns the name of the patient at the front of the queue\n.
+        If mode is 0, returns the first name of the patient\n
+        If mode is 1, returns detailed information of the patient\n"""
+
+        if self.is_empty():
+            return None # Return None, let the caller handle printing
         else:
-            current = self.head
-            print("Patients in the queue:")
-            while current:
-                print(f"Patient: {current.name}, Age: {current.age}, Ailment: {current.ailment}, Urgency Level: {current.urgency_level}")
-                current = current.next
+            if mode == 0:
+                return self.head.name
+            elif mode == 1:
+                return (f"\nName:               {self.head.name}"
+                        f"\nAge:                {self.head.age}"
+                        f"\nSickness:           {self.head.sickness}"
+                        f"\nUrgency Level:      {self.head.urgency_level}")
+            else:
+                return self.head
 
     def serve_patient(self):
+        """Removes the patient at the front of the queue."""
         if self.is_empty():
-            print("No patients to serve.")
-            return
-        else:
-            served = self.head
-            self.head = self.head.next
-            self.size -= 1
-            print(f"Serving patient: {served}")
+            return None # Return None if nothing to serve
+
+        served_patient_name = self.head.name
+        self.head = self.head.next
+        self.size -= 1
+        return served_patient_name # Return the name of who was served
 
     def count_patients(self):
         return self.size
