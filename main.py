@@ -1,14 +1,15 @@
 """
+
 Group 5 - Queuing System (Linked List Implementation)
 A Machine Project submitted in partial fulfillment of the 3rd Term Requirement for the subject DASTRUC
 
 Presented by the following students of IT242:
-1.
-2.
-3.
+1. Ferol, John Sebastian Khyle M.
+2. Gonzales, Hilario III B.
+3. Royo, Aenard Ollyer
 
 Submitted to: Mr. Renan Bacit
-Date: June 13, 2025 (Friday)
+Date: June 20, 2025 (Friday)
 
 """
 
@@ -95,17 +96,15 @@ def main():
                 print(f"Patient {patient_list.peek_patient(mode=0)} has been served and is removed from the queue.")
                 patient_list.serve_patient()
                 input("Press any key to return to the menu...")
-
+                
             else:
                 continue
-
 
         elif choice == 3:
             clear_screen()
             choice_3_title()
             # Code to display patients
-
-            # Note: Not actual implementation
+            
             print(patient_list.display_patients())
             input("Press Enter to continue...")
 
@@ -114,7 +113,6 @@ def main():
             choice_4_title()
             # Code to count patients
 
-            # Note: Not actual implementation
             if patient_list.is_empty():
                 print("There are no patients in the queue.")
             else:
